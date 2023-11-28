@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="https://res-1.cdn.office.net/todo/1275779_2.104.2/favicon.ico">
+    <title>To Do</title>
+
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	
+	<header>
+		<h1>My Day</h1>
+		<h1 id="current-time"></h1>
+		<form id="new-task-form">
+			<input 
+				type="text" 
+				name="new-task-input" 
+				id="new-task-input" 
+                class="input" 
+                onkeyup="success()"
+				placeholder="Add a task" />
+			<input 
+				type="submit"
+				id="new-task-submit" 
+                disabled
+				value="Add" />
+		</form>
+	</header>
+	<main>
+		<section class="task-list">
+			<h2>Tasks</h2>
+
+			<div id="tasks">
+
+				<!-- <div class="task">
+					<div class="content">
+						<input 
+							type="text" 
+							class="text" 
+							value="A new task"
+							readonly>
+					</div>
+					<div class="actions">
+						<button class="edit">Edit</button>
+						<button class="delete">Delete</button>
+					</div>
+				</div> -->
+
+			</div>
+		</section>
+	</main>
+
+	<script src="main.js"></script>
+    <script>
+        function success() {
+	 if(document.getElementById("new-task-input").value==="") { 
+            document.getElementById('new-task-submit').disabled = true; 
+        } else { 
+            document.getElementById('new-task-submit').disabled = false;
+        }
+    }
+
+	function updateCurrentTime() {
+            var currentTimeElement = document.getElementById('current-time');
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            // Add leading zero if needed
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var formattedTime = hours + ':' + minutes + ':' + seconds;
+            currentTimeElement.textContent = 'Current Time: ' + formattedTime;
+        }
+
+        // Update the time every second
+        setInterval(updateCurrentTime, 1000);
+
+		updateCurrentTime();
+
+    </script>
+</body>
+</html>
